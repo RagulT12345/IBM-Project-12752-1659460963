@@ -1,10 +1,26 @@
-from random import *
+import datetime
 import time
-import os
-file ="alarm.wav"
-while(True):
-    temp = randint(1, 100)
-    humidity = randint(1, 100)
-    if (temp > 40 and humidity > 40):
-        os.system(file)
-        time.sleep(11)
+import random
+import RPi.GPIO as GPIO     
+
+GPIO.setmode(GPIO.BCM)      
+GPIO.setwarning(false)     
+BUZZER = 23                
+buzzerstate = False 
+
+dt = datetime.datetime.now()
+GPIO.setup(BUZZER,GPIO.OUT)
+
+
+while True:
+	temp = random.randint(0, 100)
+    	humidity = random.randint(0, 100)
+    	buzzstate = not buzzstate                
+    	GPIO.output(BUZZER,buzzstate)
+    	if(temp>=55):
+		print("temperature have crossed the threshold level on",dt.strftime("%d-%m-%y"),"at",dt.strftime("%H:%M"))
+    	elif(humidity>=78):
+        	print("humidity have crossed the threshold level on",dt.strftime("%d-%m-%y"),"at",dt.strftime("%H:%M"))
+        time.sleep(20)
+	
+   
