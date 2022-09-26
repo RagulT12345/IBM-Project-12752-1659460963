@@ -7,4 +7,4 @@ while(True):
     humidity = randint(1, 100)
     if (temp > 40 and humidity > 40):
         os.system(file)
-        time.sleep(11
+        time.sleep(11)
